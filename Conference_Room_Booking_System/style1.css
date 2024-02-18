@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(235, 251, 255, 0.7),rgba(235, 251, 255, 0.7)), url(pictures/bg_image_about_us.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 10px 8%;
+}
+.container p{
+    text-align: justify;
+    text-indent: 50px;
+}
+
+.memberList{
+    padding-top: 50px;
+    padding-left: 50px;
+}

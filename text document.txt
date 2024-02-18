@@ -1,0 +1,10 @@
+Step1:-
+User will sign up on out page and get conformation mail about registration on our platform.
+Step2:-
+Then user will be login to booking system.
+Step3:-
+Correct login credentials will redirect to booking page.
+Step4:-
+After selecting the date, conference room and time slot(if available to user) user will get conformation mail.
+Step5:-
+Thank you, your room is booked

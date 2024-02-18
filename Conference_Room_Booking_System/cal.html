@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cal.css">
+    <title>Calendar</title>
+
+</head>
+
+<body>
+    
+    <div class="container">
+        <header>
+                <button onclick="prev();" id="prev" class="prev">❮</button>
+                <h3 id="current-date"></h3>
+                <button onclick="next();" id="next" class="next">❯</button>
+        </header>
+        <div id="calendar" class="calendar"> </div>
+    </div>
+    <div class="new_res">
+            <form action="#" method="post">
+                <div class="title">
+                    <h1>New Reservation</h1>
+                </div>
+                <div class="Date">
+                    <h3 id='d'></h3>
+                </div>
+                <div class="form">
+                    <div class="inputfield">
+                        <label for="username"><b>UserName</b></label>
+                        <input type="text" placeholder="Enter username" name="username" id="fillin" required>
+                    </div>
+    
+                    <div class="inputfield">
+                        <label for="fname"><b>First Name</b></label>
+                        <input type="text" placeholder="First Name" name="fname" id="fillin" required>
+                    </div>
+    
+                    <div class="inputfield">
+                        <label for="lname"><b>Last Name</b></label>
+                        <input type="text" placeholder="Last Name" name="lname" id="fillin" required>
+                    </div>
+    
+                    <div class="inputfield">
+                        <label for="email"><b>Email</b></label>
+                        <input type="email" placeholder="Enter Email" name="email" id="fillin" required>
+                    </div>
+    
+                    <div class="inputfield">
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" id="fillin" required>            
+                    </div>
+    
+                    <div class="inputfield">
+                        <label for="psw-conf"><b>Confirm Password</b></label>
+                        <input type="password" placeholder="Confirm Password" name="psw-conf" id="fillin" required>
+                    </div>
+    
+                    <div class="inputfield">
+                        <p><b>Designation</b></p>
+                        <input type="radio" id="fac" name="designation" value="Faculty">
+                        <label for="fac"><b>Faculty</b></label>
+            
+                        <input type="radio" id="stu" name="designation" value="Student">
+                        <label for="stu"><b>Student</b></label>
+                        <br>
+                    </div>
+                    
+                    <div class="inputfield">
+                        <button type="submit" class="registerbtn"><b>Register</b></button>
+                    </div>
+                </div>
+            <p>Already have an account? <a href="#">Sign in</a>.</p>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="cal.js"></script>
+</body>
+
+</html>

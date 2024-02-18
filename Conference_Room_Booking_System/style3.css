@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    
+}
+
+body {
+    padding: 0 10px;
+    background-color: rgba(1, 10, 18, 0.5);
+    background-image: url(pictures/bg_image_signup.jpg);
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.container {
+    background-image: linear-gradient(135deg, rgb(87, 91, 92), rgb(235, 218, 235));
+    max-width: 700px;
+    max-height: 1000px;
+    width: 100%;
+    background-color: white;
+    margin: 50px auto;
+    padding: 30px;
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+.my_class {
+    color: white;
+}
+.container .title {
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container .form {
+    width: 100%;
+}
+
+.container .form .inputfield {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.container .form .inputfield #fac {
+    margin-right: 10px;
+}
+.container .form .inputfield #stu {
+    margin-right: 10px;
+}
+
+.container .form .inputfield label {
+    width: 150px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.container .form .inputfield p {
+    width: 150px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+#fillin {
+    width: 100%;
+    outline: none;
+    border: 1px solid red;
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    
+}
+
+.container .form .inputfield .registerbtn {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+
+}
+
+.valid {
+    color: green;
+}
+.valid:before {
+    position: relative;
+    left: -35px;
+}
+.invalid {
+    color: red;
+}
+.invalid:before {
+    position: relative;
+    left: -35px;
+}
+
+
