@@ -181,7 +181,7 @@ $designation = $_GET["designation"];
  //echo $p1;
  $unik = "$p2$p3$p1";
  $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
- $sql_query_1_u = "SELECT username FROM reservations where unique1 = '$unik'";
+ $sql_query_1_u = "SELECT username FROM reservations where reservation_id = '$unik'";
  $result_1_u = $mysqli -> query($sql_query_1_u);
  
  while($row_1=mysqli_fetch_array($result_1_u))
@@ -214,7 +214,7 @@ $sql_query_3 = "SELECT email FROM users where username = '$user_stu'";
 {
  $email1= $row_3['email'].'';
 }
-$query1 = "DELETE FROM reservations where unique1 = '$unik'";
+$query1 = "DELETE FROM reservations where reservation_id = '$unik'";
 $data1 = mysqli_query($conn, $query1);
 echo "ERROR: ".mysqli_error($conn);
 
@@ -236,7 +236,7 @@ else if ($p1 == 'time_slot_5'){
 
 
 $receiver1 = $email1;
-        $subject = "Booking Cancelled @G22 portal";
+        $subject = "Booking Cancelled @IITMandi portal";
         $body =
             "Hi ${firstname1} ${lastname1}.
 
@@ -283,7 +283,7 @@ echo '<div class="my_class">';
         
 
 
- $query = "INSERT INTO reservations (unique1,username,conf_room,time_slot,datee,designation) 
+ $query = "INSERT INTO reservations (reservation_id,username,conf_room,time_slot,datee,designation) 
         VALUES('$unik','$user','$p3','$p1','$p2','$designation')";
  $data = mysqli_query($conn, $query);
  $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
@@ -342,12 +342,12 @@ else if ($p1 == 'time_slot_5'){
          # Time slot booked - ${p1}
 
        Have a great day ahead.
-       For any further queries, please drop us a mail on contactG22@gmail.com.
+       For any further queries, please drop us a mail on b21312@students.iitmandi.ac.in.
         
 Thanks
-G22 Team "
+Prakul "
             ;
-        $sender = "From: b21327@students.iitmandi.ac.in";
+        $sender = "From: b21312@students.iitmandi.ac.in";
        
 
 echo '<div class="my_class">';

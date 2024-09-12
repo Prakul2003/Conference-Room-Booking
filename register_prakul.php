@@ -154,7 +154,7 @@ $designation = $_GET["designation"];
  $user=preg_replace("/\s+/", "", $user);
  $designation=preg_replace("/\s+/", "", $designation);
  $unik = "$p2$p3$p1";
- $query = "INSERT INTO reservations (unique1,username,conf_room,time_slot,datee,designation) 
+ $query = "INSERT INTO reservations (reservation_id,username,conf_room,time_slot,datee,designation) 
         VALUES('$unik','$user','$p3','$p1','$p2','$designation')";
  $data = mysqli_query($conn, $query);
  $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
