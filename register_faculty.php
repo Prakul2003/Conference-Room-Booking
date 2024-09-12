@@ -180,7 +180,7 @@ $designation = $_GET["designation"];
  $designation=preg_replace("/\s+/", "", $designation);
  //echo $p1;
  $unik = "$p2$p3$p1";
- $mysqli = new mysqli($servername, $username, $psd, $dbname);
+ $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
  $sql_query_1_u = "SELECT username FROM reservations where unique1 = '$unik'";
  $result_1_u = $mysqli -> query($sql_query_1_u);
  
@@ -286,7 +286,7 @@ echo '<div class="my_class">';
  $query = "INSERT INTO reservations (unique1,username,conf_room,time_slot,datee,designation) 
         VALUES('$unik','$user','$p3','$p1','$p2','$designation')";
  $data = mysqli_query($conn, $query);
- $mysqli = new mysqli($servername, $username, $psd, $dbname);
+ $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
 
  $sql_query_1 = "SELECT firstname FROM users where username = '$user'";
 
@@ -375,7 +375,7 @@ echo '<div class="my_class">';
 //     }
 
 //     $unik = "$p2$p3$p1";
-//     $mysqli = new mysqli($servername, $username, $psd, $dbname);
+//     $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
 //     $sql_query_1_u = "SELECT username FROM reservations where unique1 = '$unik'";
 //     $result_1_u = $mysqli -> query($sql_query_1_u);
     

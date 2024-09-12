@@ -157,7 +157,7 @@ $designation = $_GET["designation"];
  $query = "INSERT INTO reservations (unique1,username,conf_room,time_slot,datee,designation) 
         VALUES('$unik','$user','$p3','$p1','$p2','$designation')";
  $data = mysqli_query($conn, $query);
- $mysqli = new mysqli($servername, $username, $psd, $dbname);
+ $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
 
  $sql_query_1 = "SELECT firstname FROM users where username = '$user'";
 

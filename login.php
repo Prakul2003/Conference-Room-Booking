@@ -101,7 +101,7 @@
 </html>
 
 <?php
-    $mysqli = new mysqli($servername, $username, $psd, $dbname);
+    $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
     if(isset($_POST['register']))
     {
         $username = $_POST['username'];

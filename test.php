@@ -1,6 +1,6 @@
 <?php include("connection.php") ?>
 <?php
-$mysqli = new mysqli($servername, $username, $psd, $dbname);
+$mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
 $myArray = array();
 $username = 'B21327';
 $result = $mysqli->query("SELECT * FROM users where username = '$username'");
