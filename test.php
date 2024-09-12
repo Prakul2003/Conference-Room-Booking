@@ -9,12 +9,12 @@ while($row = $result->fetch_array()) {
 }
 $a = json_encode($myArray);
 //echo json_encode($myArray);
-echo
-'<script>
+?>
+
+<script>
 var json_obj = <?php echo $a; ?>
 let obj = json_obj[0];
 
 console.log(obj.id);
 
-</script>'
-?>
+</script>
