@@ -164,6 +164,9 @@ if (isset($_POST['register'])) {
         $query = "INSERT INTO users (username,firstname,lastname,email,passwrd,cpassword,designation) 
         VALUES('$username','$fname','$lname','$email','$psd','$cpsd','$designation')";
         $data = mysqli_query($conn, $query);
+        echo "<script type = text/javascript>
+        alert('debug', $data);
+    </script>";
     }
 
 
