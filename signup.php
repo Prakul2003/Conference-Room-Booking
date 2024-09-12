@@ -74,6 +74,35 @@
             <p>Already have an account? <a href="login.php">Login</a>.</p>
     </div>
 
+
+
+    <!-- <script type="text/javascript">
+        var greeting = "Good Morning";
+            if (new Date.getHours() > 12 && new Date.getHours() < 16) {
+            greeting = "Good Afternoon";
+            }
+            else if(new Date.getHours() > 16){
+                greeting = "Good Evening";
+            }
+            <?php $body = '<script type="text/javascript"> document.write(greeting); </script>'; ?>
+            location.href = "test2.php?p1=" + greeting;
+            
+    </script> -->
+
+    <!-- <script>
+        function myFunction() {
+            var psw = document.getElementsByName("psw")[0].value;
+            var psw_conf = document.getElementsByName("psw-conf")[0].value;
+        
+
+        if (psw != psw_conf) {
+            alert("Password and Confirmed Password fields do not match.");
+            return false;
+  }
+    
+}
+    </script> -->
+
 </body>
 
 </html>
@@ -89,74 +118,132 @@ if (isset($_POST['register'])) {
     $cpsd = $_POST['psw-conf'];
     $designation = $_POST['designation'];
 
+    //         echo '<script>
+//         function myFunction() {
+//             var psw = document.getElementsByName("psw")[0].value;
+//             var psw_conf = document.getElementsByName("psw-conf")[0].value;
+
+
+    //         if (psw != psw_conf) {
+//             alert("Password and Confirmed Password fields do not match.");
+//             //window.location.reload();  
+//   }
+
+    // }
+//     </script>';
+
     $sql_u = "SELECT * FROM users WHERE username='$username'";
+    //echo $username;
     $res_u = mysqli_query($conn, $sql_u);
 
+
+    echo '<div class="my_class">';
+    //echo mysqli_num_rows($res_u);
     $foo_1 = true;
     if (mysqli_num_rows($res_u) > 0) {
-        echo "<script>alert('Username already exists.');</script>";
+        echo "<script>alert('Username already exists.');
+            
+            </script>";
         $foo_1 = false;
     }
 
+
+    //echo "$username "," ", "$fname "," ","$lname"," ","$email"," ","$psd"," ","$cpsd"," ","$designation";
+    //echo "<br>";
+    //echo $query;
+
     $foo = true;
+
     if ($psd != $cpsd && $foo_1 == true) {
-        echo '<script type="text/javascript">alert("Password and Confirmed Password fields do not match.");</script>';
+        echo '<script type = text/javascript>
+        alert("Password and Confirmed Password fields do not match.");
+    </script>';
         $foo = false;
         $data = true;
     } else {
-        $query = "INSERT INTO users (username, firstname, lastname, email, passwrd, cpassword, designation) 
-                  VALUES('$username','$fname','$lname','$email','$psd','$cpsd','$designation')";
+        $query = "INSERT INTO users (username,firstname,lastname,email,passwrd,cpassword,designation) 
+        VALUES('$username','$fname','$lname','$email','$psd','$cpsd','$designation')";
         $data = mysqli_query($conn, $query);
     }
 
+
+
+
+
     if ($data && $foo) {
-        // Email Section
+
+
+        echo "Data has been inserted to database.";
+        
+   
+
+
         $receiver = $email;
         $subject = "Registration Successful @G22 portal";
-        $body = "Hi ${fname} ${lname}.\n\n
-                Greetings of the day.\nThanks for registering on our platform.\n\n
-                # Username: ${username}\n# Email: ${email}\n\n
-                Please don't share your credentials.\n\n
-                Thanks\nG22 Team";
+        $body =
+            "Hi ${fname} ${lname}.
+
+        Greetings of the day. 
+        Thanks a lot for registering on our booking platform. 
+
+        Following is your username and registration email.
+        
+        # Username - ${username}
+        # Email - ${email}
+
+        We advise you not to share your password or login details with anyone.
+        
+Thanks
+G22 Team "
+            ;
         $sender = "From: b21327@students.iitmandi.ac.in";
 
+        echo '<div class="my_class">';
         if (mail($receiver, $subject, $body, $sender)) {
             echo "Email sent successfully to $receiver";
         } else {
-            $errorMessage = error_get_last()['message'];  // Capture error
-            echo "Sorry, failed while sending mail! Error: $errorMessage";
+            echo "Sorry, failed while sending mail!" . error_get_last();
         }
+        echo '</div>';
 
-        // Redirection after registration
-        $sql_query = "SELECT firstname FROM users WHERE username = '$username'";
-        $result = $mysqli->query($sql_query);
+        
+        $sql_query = "SELECT firstname FROM users where username = '$username'";
+        $result = $mysqli -> query($sql_query);
+
         $url = 'date.php';
-        while($row = mysqli_fetch_array($result)) {
-            $url .= '?firstname='.$row['firstname'];
-        }
+        while($row=mysqli_fetch_array($result))
+{
+        $url .= '?firstname='.$row['firstname'].'';
+}
 
-        $sql_query = "SELECT designation FROM users WHERE username = '$username'";
-        $result = $mysqli->query($sql_query);
-        while($row = mysqli_fetch_array($result)) {
-            $url .= '&designation='.$row['designation'];
-        }
+        $sql_query = "SELECT designation FROM users where username = '$username'";
+        $result = $mysqli -> query($sql_query);
 
-        $sql_query = "SELECT username FROM users WHERE username = '$username'";
-        $result = $mysqli->query($sql_query);
-        while($row = mysqli_fetch_array($result)) {
-            $url .= '&username='.$row['username'];
-        }
+        while($row=mysqli_fetch_array($result))
+{
+        $url .= '&designation='.$row['designation'].'';
+}
+        $sql_query = "SELECT username FROM users where username = '$username'";
+        $result = $mysqli -> query($sql_query);
 
-        // Redirection happens here
-        header('Location: ' . $url);
-        exit();
+        while($row=mysqli_fetch_array($result))
+{
+        $url .= '&username='.$row['username'].'';
+}
+        header('Location: '.$url);
 
     } else {
         if ($foo == true) {
             echo "Insertion operation failed.<br> REASON - " . mysqli_error($conn);
+            echo "<br>";
         } else {
             echo "Insertion operation failed.<br> REASON - Password mismatch.";
+            echo "<br>";
         }
+
     }
+    echo '</div>';
+
+
 }
 ?>
