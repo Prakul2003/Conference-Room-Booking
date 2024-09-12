@@ -1,6 +1,6 @@
 <?php
     $username = "andvjlrmxw";
-    $servername = "conference-server.mysql.database.azure.com";
+    $servername = "conference-server.mysql.database.azure.com:3306";
     $psd = "MTRqQTdsj6RRcTp";
     $dbname = "project_adp";
     
