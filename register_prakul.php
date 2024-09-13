@@ -71,6 +71,9 @@ foreach ($cars as $slot) {
 
 <?php
 if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
+    echo "<script>
+    alert('reached here');
+  </script>";
     $p1 = $_GET["p1"];
     $p2 = $_GET["p2"];
     $p3 = $_GET["p3"];
