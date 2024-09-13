@@ -48,14 +48,12 @@
         $username = $_POST['username'];
         $psd = $_POST['psw'];
 
-        echo $username;
         // Check if username exists
         $sql_u = "SELECT * FROM users WHERE username='$username'";
         $res_u = mysqli_query($conn, $sql_u);
 
         if (mysqli_num_rows($res_u) > 0) {
             // Verify username and password
-            echo "b";
             $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
             $res_p = mysqli_query($conn, $sql_p);
 
@@ -64,17 +62,11 @@
                 $row = mysqli_fetch_array($res_p);
                 $firstname = $row['firstname'];
                 $designation = $row['designation'];
-                echo "c";
 
-                // Debugging: Show firstname, designation, and username in an alert
-                echo "<script>
-                        alert('Firstname: " . $firstname . "\\nDesignation: " . $designation . "\\nUsername: " . $username . "');
-                      </script>";
 
                 // Remove exit and allow the redirection after the alert
                 // Construct URL with parameters
                 $url = 'https://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname='.$firstname.'&designation='.$designation.'&username='.$username;
-
                 // Redirect to date.php
                 header('Location: ' . $url);
                 exit(); // Ensure no further code is executed after redirection
