@@ -198,7 +198,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         
         $mail->setFrom('b21312@students.iitmandi.ac.in', 'Prakul');
         $mail->addAddress( $receiver,$fname);
-        $mail->isHTML(true);
+        // $mail->isHTML(true);
         $mail->Subject = "Registration Successful @IITMandi Conference Room portal";
         $mail->Body = 
         "Hi " . $fname . " " . $lname . ".\n\n" .
@@ -210,7 +210,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         "We advise you not to share your password or login details with anyone.\n\n" .
         "Thanks and Regards,\n" .
         "Prakul";
-        
+
         echo '<div class="my_class">';
         if ($mail->send()) {
             echo "Email sent successfully to $receiver";

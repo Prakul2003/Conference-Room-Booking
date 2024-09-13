@@ -22,12 +22,12 @@ try {
 
     // Sender and recipient details
     $mail->setFrom('khuranaprakul03@gmail.com', 'Prakul');
-    $mail->addAddress('b21316@students.iitmandi.ac.in', 'Yash');
+    $mail->addAddress('vikassingh95268@gmail.com', 'Vikas');
 
     // Email content
-    $mail->isHTML(true); // Set email format to HTML
+    //$mail->isHTML(true); // Set email format to HTML
     $mail->Subject = 'TMC';
-    $mail->Body    = 'TMC';
+    $mail->Body    = "HI VIKAS \n\n"."greetings of the day.\n";
 
     // Send the email
     $mail->send();
