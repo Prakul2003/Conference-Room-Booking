@@ -77,7 +77,7 @@
                 $designation = $row['designation'];
 
                 // Construct URL with parameters
-                $url = 'date.php?firstname=' . urlencode($firstname) . '&designation=' . urlencode($designation) . '&username=' . urlencode($username);
+                $url = 'https://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=' . urlencode($firstname) . '&designation=' . urlencode($designation) . '&username=' . urlencode($username);
 
                 // Redirect to date.php
                 header('Location: ' . $url);
