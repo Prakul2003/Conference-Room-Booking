@@ -8,9 +8,6 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-echo "<script>
-                alert('a');
-              </script>";
 $cars = array('time_slot_1', 'time_slot_2', 'time_slot_3', 'time_slot_4', 'time_slot_5');
 $date = $_GET["date"];
 $conf_room = $_GET['conf_room'];
