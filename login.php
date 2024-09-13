@@ -48,16 +48,16 @@
         $username = $_POST['username'];
         $psd = $_POST['psw'];
 
-
+        echo $username;
         // Check if username exists
-        $sql_u = "SELECT * FROM users WHERE username = $username";
-        $res_u = $mysqli->query($sql_u);
+        $sql_u = "SELECT * FROM users WHERE username='$username'";
+        $res_u = mysqli_query($conn, $sql_u);
 
         if (mysqli_num_rows($res_u) > 0) {
             // Verify username and password
             echo "b";
-            $sql_p = "SELECT * FROM users WHERE username = $username AND passwrd = $psd";
-            $res_p = $mysqli ->query($sql_p);
+            $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
+            $res_p = mysqli_query($conn, $sql_p);
 
             if (mysqli_num_rows($res_p) >0) {
                 // Fetch data for redirection URL
