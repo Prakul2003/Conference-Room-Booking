@@ -72,7 +72,7 @@ foreach ($cars as $slot) {
 </body>
 
 <?php
-if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
+if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"]) && isset($_GET["username"]) && isset($_GET["designation"])) {
     $p1 = preg_replace("/\s+/", "", $_GET["p1"]);
     $p2 = preg_replace("/\s+/", "", $_GET["p2"]);
     $p3 = preg_replace("/\s+/", "", $_GET["p3"]);
