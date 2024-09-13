@@ -8,9 +8,7 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-echo "<script>
-                alert('a');
-              </script>";
+
 $cars = array('time_slot_1', 'time_slot_2', 'time_slot_3', 'time_slot_4', 'time_slot_5');
 $date = $_GET["date"];
 $conf_room = $_GET['conf_room'];
@@ -73,11 +71,16 @@ foreach ($cars as $slot) {
 
 <?php
 if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
-    $p1 = preg_replace("/\s+/", "", $_GET["p1"]);
-    $p2 = preg_replace("/\s+/", "", $_GET["p2"]);
-    $p3 = preg_replace("/\s+/", "", $_GET["p3"]);
-    $user = preg_replace("/\s+/", "", $_GET["username"]);
-    $designation = preg_replace("/\s+/", "", $_GET["designation"]);
+    $p1 = $_GET["p1"];
+    $p2 = $_GET["p2"];
+    $p3 = $_GET["p3"];
+    $user = $_GET["username"];
+    $designation = $_GET["designation"];
+    // $p1=preg_replace("/\s+/", "", $p1);
+    // $p2=preg_replace("/\s+/", "", $p2);
+    // $p3=preg_replace("/\s+/", "", $p3);
+    // $user=preg_replace("/\s+/", "", $user);
+    // $designation=preg_replace("/\s+/", "", $designation);
     echo "<script>
     alert('$p1 $p2 $p3');
   </script>";
