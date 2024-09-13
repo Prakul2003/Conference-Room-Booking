@@ -42,7 +42,7 @@
 
 <?php
     // Ensure you are using the correct database connection variable
-    $mysqli = new mysqli($servername, $username, $password, $dbname);
+    $mysqli = new mysqli($servername, $username, $psd, $dbname);
     echo "aa";
     if (isset($_POST['login'])) {
         // Sanitize and retrieve input
