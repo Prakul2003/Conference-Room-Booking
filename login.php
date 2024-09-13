@@ -35,127 +35,61 @@
                 </div>
 
                 <div class="inputfield">
-                <button type="submit" class="registerbtn" name="register"> Login </button>
+                    <button type="submit" class="registerbtn" name="login"> Login </button>
                 </div>
             </div>
         <p>New User? <a href="signup.php">Sign up</a>.</p>
     </div>
 
-    <!-- <div id="message1">
-        <h3>username will have </h3>
-        <p id="alphanum" class="invalid">only lowercase alphabates and numbers.</p>
-        <p id="length" class="invalid">Length of username should be from 4 to 10.</p>
-    </div>
-
-    <script>
-        function validateform(){
-            var username = document.myform.username;
-            var alphanum = document.getElementsById("alphanum");
-            var length = document.getElementsById("length");
-            var alnum = /^[0-9a-z]+$/;
-            username.onfocus() = function1(){
-                document.getElementbyId("message1").style.display = "block";
-            };
-            username.onblur() = function1(){
-                document.getElementbyId("message1").style.display = "none";
-            };
-            username.onkeyup() = function1(){
-                if(username.value.match(alnum)){
-                    alphanum.classList.remove("valid");
-                    alphanum.classList.add("invalid");
-                    return true
-                } else {
-                    alphanum.classList.remove("invalid");
-                    alphanum.classList.add("valid");
-                    return false
-                }
-                if(username.value.length>3 && username.value.length<11){
-                    alphanum.classList.remove("valid");
-                    alphanum.classList.add("invalid");
-                    return true
-                } else {
-                    alphanum.classList.remove("invalid");
-                    alphanum.classList.add("valid");
-                    return false
-                }
-            };
-        }
-    </script> -->
-
-
-    <!-- <script type="text/javascript">
-        var greeting = "Good Morning";
-            if (new Date.getHours() > 12 && new Date.getHours() < 16) {
-            greeting = "Good Afternoon";
-            }
-            else if(new Date.getHours() > 16){
-                greeting = "Good Evening";
-            }
-            <?php $body = '<script type="text/javascript"> document.write(greeting); </script>';?>
-            location.href = "test2.php?p1=" + greeting;
-            
-    </script> -->
-
-
     </body>
 </html>
 
 <?php
-    $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
-    if(isset($_POST['register']))
-    {
+    // Ensure you are using the correct database connection variable
+    $conn = new mysqli($servername, $username, $password, $dbname, 3306); // Adjust as per your connection variables
+    
+    if (isset($_POST['login'])) {
         $username = $_POST['username'];
-        $psd= $_POST['psw'];
+        $psd = $_POST['psw'];
 
-        echo '<div class="my_class">';
-
-        $uid = "SELECT * FROM users WHERE username='$username'";
-        $res = mysqli_query($conn, $uid);
-
-        
-
-        if(mysqli_num_rows($res)==1){
-            $verification = "SELECT * FROM users WHERE username='$username' AND passwrd='$psd'";
-            $result = mysqli_query($conn,$verification);
-
-            if(mysqli_num_rows($result)==1){
-                $sql_query = "SELECT firstname FROM users where username = '$username'";
-                $result = $mysqli -> query($sql_query);
-        
-                $url = 'date.php';
-                while($row=mysqli_fetch_array($result))
-        {
-                $url .= '?firstname='.$row['firstname'].'';
+        // Check for SQL connection errors
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-        
-                $sql_query = "SELECT designation FROM users where username = '$username'";
-                $result = $mysqli -> query($sql_query);
-        
-                while($row=mysqli_fetch_array($result))
-        {
-                $url .= '&designation='.$row['designation'].'';
-        }
-                $sql_query = "SELECT username FROM users where username = '$username'";
-                $result = $mysqli -> query($sql_query);
-        
-                while($row=mysqli_fetch_array($result))
-        {
-                $url .= '&username='.$row['username'].'';
-        }
-                header('Location: '.$url);
-        
-            }else{
-            echo "<script>alert('Invalid login credentials.');
-                
-            </script>";
+
+        // Escape inputs to prevent SQL injection
+        $username = mysqli_real_escape_string($conn, $username);
+        $psd = mysqli_real_escape_string($conn, $psd);
+
+        // Check if username exists
+        $sql_u = "SELECT * FROM users WHERE username = '$username'";
+        $res_u = mysqli_query($conn, $sql_u);
+
+        if (mysqli_num_rows($res_u) == 1) {
+            // Verify username and password
+            $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
+            $res_p = mysqli_query($conn, $sql_p);
+
+            if (mysqli_num_rows($res_p) == 1) {
+                // Fetch data for redirection URL
+                $row = mysqli_fetch_assoc($res_p);
+                $firstname = $row['firstname'];
+                $designation = $row['designation'];
+
+                // Construct URL with parameters
+                $url = 'date.php?firstname=' . urlencode($firstname) . '&designation=' . urlencode($designation) . '&username=' . urlencode($username);
+
+                // Redirect to date.php
+                header('Location: ' . $url);
+                exit(); // Ensure no further code is executed after redirection
+            } else {
+                echo "<script>alert('Invalid password.');</script>";
             }
         } else {
-            echo "Username doesn't exist rather sign up.";
-            // echo "<script>alert('Username doesn't exist rather sign up.');
-                
-            // </script>";
+            echo "<script>alert('Username does not exist. Please sign up.');</script>";
         }
-        echo '</div>';
-     }
+    }
+
+    // Close connection
+    mysqli_close($conn);
 ?>
-        
