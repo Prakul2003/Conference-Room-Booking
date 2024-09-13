@@ -1,9 +1,12 @@
-<?php
-include("connection.php");
-require 'vendor/autoload.php'; // Include PHPMailer autoload
+<?php include("connection.php");?>
 
+<?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 $cars = array('time_slot_1', 'time_slot_2', 'time_slot_3', 'time_slot_4', 'time_slot_5');
 $date = $_GET["date"];
@@ -133,7 +136,7 @@ function sendBookingEmail($firstname, $lastname, $email, $date, $room, $slot) {
             </ul>
             <br>
             Have a great day ahead!<br>
-            For any queries, contact us at contactG22@gmail.com.
+            For any queries, contact us at contactCRBPortal@gmail.com.
         ";
 
         $mail->send();
