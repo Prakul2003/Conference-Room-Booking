@@ -43,27 +43,25 @@
 <?php
     // Ensure you are using the correct database connection variable
     $mysqli = new mysqli($servername, $username, $psd, $dbname);
-    echo "aa";
     if (isset($_POST['login'])) {
         // Sanitize and retrieve input
         $username = $_POST['username'];
         $psd = $_POST['psw'];
-        echo "a";
 
 
         // Check if username exists
         $sql_u = "SELECT * FROM users WHERE username = $username";
-        $res_u = mysqli_query($conn, $sql_u);
+        $res_u = $mysqli->query($sql_u);
 
         if (mysqli_num_rows($res_u) > 0) {
             // Verify username and password
             echo "b";
-            $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
-            $res_p = mysqli_query($conn, $sql_p);
+            $sql_p = "SELECT * FROM users WHERE username = $username AND passwrd = $psd";
+            $res_p = $mysqli ->query($sql_p);
 
             if (mysqli_num_rows($res_p) >0) {
                 // Fetch data for redirection URL
-                $row = mysqli_fetch_assoc($res_p);
+                $row = mysqli_fetch_array($res_p);
                 $firstname = $row['firstname'];
                 $designation = $row['designation'];
                 echo "c";
