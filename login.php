@@ -42,28 +42,24 @@
 
 <?php
     // Ensure you are using the correct database connection variable
-    $conn = new mysqli($servername, $username, $password, $dbname, 3306);
+    $mysqli = new mysqli($servername, $username, $password, $dbname);
     
     if (isset($_POST['login'])) {
         // Sanitize and retrieve input
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $psd = mysqli_real_escape_string($conn, $_POST['psw']);
+        $username = $_POST['username'];
+        $psd = $_POST['psw'];
 
-        // Check for SQL connection errors
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
         // Check if username exists
-        $sql_u = "SELECT * FROM users WHERE username = '$username'";
+        $sql_u = "SELECT * FROM users WHERE username = $username";
         $res_u = mysqli_query($conn, $sql_u);
 
-        if (mysqli_num_rows($res_u) == 1) {
+        if (mysqli_num_rows($res_u) > 0) {
             // Verify username and password
             $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
             $res_p = mysqli_query($conn, $sql_p);
 
-            if (mysqli_num_rows($res_p) == 1) {
+            if (mysqli_num_rows($res_p) >0) {
                 // Fetch data for redirection URL
                 $row = mysqli_fetch_assoc($res_p);
                 $firstname = $row['firstname'];
@@ -76,12 +72,13 @@
 
                 // Remove exit and allow the redirection after the alert
                 // Construct URL with parameters
-                $url = 'https://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=' . urlencode($firstname) . '&designation=' . urlencode($designation) . '&username=' . urlencode($username);
+                $url = 'https://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname='.$firstname.'&designation='.$designation.'&username='.$username;
 
                 // Redirect to date.php
                 header('Location: ' . $url);
                 exit(); // Ensure no further code is executed after redirection
-            } else {
+            } 
+            else {
                 echo "<script>alert('Invalid password.');</script>";
             }
         } else {
