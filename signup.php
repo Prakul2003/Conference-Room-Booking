@@ -76,7 +76,7 @@
 
 
 
-     <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var greeting = "Good Morning";
             if (new Date.getHours() > 12 && new Date.getHours() < 16) {
             greeting = "Good Afternoon";
@@ -87,9 +87,9 @@
             <?php $body = '<script type="text/javascript"> document.write(greeting); </script>'; ?>
             location.href = "test2.php?p1=" + greeting;
             
-    </script> 
+    </script> -->
 
-   <script>
+    <!-- <script>
         function myFunction() {
             var psw = document.getElementsByName("psw")[0].value;
             var psw_conf = document.getElementsByName("psw-conf")[0].value;
@@ -101,14 +101,14 @@
   }
     
 }
-    </script>
+    </script> -->
 
 </body>
 
 </html>
 
 <?php
-$mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
+$mysqli = new mysqli($servername, $username, $psd, $dbname);
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $fname = $_POST['fname'];
@@ -118,18 +118,18 @@ if (isset($_POST['register'])) {
     $cpsd = $_POST['psw-conf'];
     $designation = $_POST['designation'];
 
-//             echo '<script>
+    //         echo '<script>
 //         function myFunction() {
 //             var psw = document.getElementsByName("psw")[0].value;
 //             var psw_conf = document.getElementsByName("psw-conf")[0].value;
 
 
-//             if (psw != psw_conf) {
+    //         if (psw != psw_conf) {
 //             alert("Password and Confirmed Password fields do not match.");
 //             //window.location.reload();  
 //   }
 
-//     }
+    // }
 //     </script>';
 
     $sql_u = "SELECT * FROM users WHERE username='$username'";
