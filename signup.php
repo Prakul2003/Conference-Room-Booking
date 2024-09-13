@@ -1,4 +1,4 @@
-<?php include("connection.php"); ?>
+<?php include("connection.php") ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,7 @@
 <body>
 
     <div class="container">
+
         <a href="index.html"><img src="pictures/logo.png" alt="Image is not supported."></a>
 
         <form action="#" method="POST" name="myform" onsubmit="return validateform()">
@@ -73,16 +74,33 @@
             <p>Already have an account? <a href="login.php">Login</a>.</p>
     </div>
 
-    <script>
-        function validateform() {
+
+
+     <script type="text/javascript">
+        var greeting = "Good Morning";
+            if (new Date.getHours() > 12 && new Date.getHours() < 16) {
+            greeting = "Good Afternoon";
+            }
+            else if(new Date.getHours() > 16){
+                greeting = "Good Evening";
+            }
+            <?php $body = '<script type="text/javascript"> document.write(greeting); </script>'; ?>
+            location.href = "test2.php?p1=" + greeting;
+            
+    </script> 
+
+   <script>
+        function myFunction() {
             var psw = document.getElementsByName("psw")[0].value;
             var psw_conf = document.getElementsByName("psw-conf")[0].value;
+        
 
-            if (psw != psw_conf) {
-                alert("Password and Confirmed Password fields do not match.");
-                return false;
-            }
-        }
+        if (psw != psw_conf) {
+            alert("Password and Confirmed Password fields do not match.");
+            return false;
+  }
+    
+}
     </script>
 
 </body>
@@ -90,10 +108,7 @@
 </html>
 
 <?php
-// Database connection
 $mysqli = new mysqli($servername, $username, $psd, $dbname, 3306);
-
-// Handle form submission
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $fname = $_POST['fname'];
@@ -103,42 +118,132 @@ if (isset($_POST['register'])) {
     $cpsd = $_POST['psw-conf'];
     $designation = $_POST['designation'];
 
-    // Check if the username already exists
+//             echo '<script>
+//         function myFunction() {
+//             var psw = document.getElementsByName("psw")[0].value;
+//             var psw_conf = document.getElementsByName("psw-conf")[0].value;
+
+
+//             if (psw != psw_conf) {
+//             alert("Password and Confirmed Password fields do not match.");
+//             //window.location.reload();  
+//   }
+
+//     }
+//     </script>';
+
     $sql_u = "SELECT * FROM users WHERE username='$username'";
-    $res_u = mysqli_query($mysqli, $sql_u);
+    //echo $username;
+    $res_u = mysqli_query($conn, $sql_u);
 
+
+    echo '<div class="my_class">';
+    //echo mysqli_num_rows($res_u);
+    $foo_1 = true;
     if (mysqli_num_rows($res_u) > 0) {
-        echo "<script>alert('Username already exists.');</script>";
-    } elseif ($psd != $cpsd) {
-        echo "<script>alert('Password and Confirm Password fields do not match.');</script>";
-    } else {
-        // Insert data into the users table
-        $query = "INSERT INTO users (username, firstname, lastname, email, passwrd, designation) 
-                  VALUES('$username', '$fname', '$lname', '$email', '$psd', '$designation')";
-        $data = mysqli_query($mysqli, $query);
-
-        if ($data) {
-            // Send email
-            $receiver = $email;
-            $subject = "Registration Successful @G22 portal";
-            $body = "Hi ${fname} ${lname}. Greetings of the day. 
-                     Thanks for registering on our platform. 
-                     Your username is ${username} and email is ${email}.";
-            $sender = "From: b21327@students.iitmandi.ac.in";
-
-            if (mail($receiver, $subject, $body, $sender)) {
-                echo "Email sent successfully to $receiver";
-            } else {
-                echo "Failed while sending mail.";
-            }
-
-            // Redirect to the next page
-            $url = "date.php?firstname=${fname}&designation=${designation}&username=${username}";
-            header('Location: ' . $url);
-            exit;  // Ensure no further code is executed after redirection
-        } else {
-            echo "Error: " . mysqli_error($mysqli);
-        }
+        echo "<script>alert('Username already exists.');
+            
+            </script>";
+        $foo_1 = false;
     }
+
+
+    //echo "$username "," ", "$fname "," ","$lname"," ","$email"," ","$psd"," ","$cpsd"," ","$designation";
+    //echo "<br>";
+    //echo $query;
+
+    $foo = true;
+
+    if ($psd != $cpsd && $foo_1 == true) {
+        echo '<script type = text/javascript>
+        alert("Password and Confirmed Password fields do not match.");
+    </script>';
+        $foo = false;
+        $data = true;
+    } else {
+        $query = "INSERT INTO users (username,firstname,lastname,email,passwrd,cpassword,designation) 
+        VALUES('$username','$fname','$lname','$email','$psd','$cpsd','$designation')";
+        $data = mysqli_query($conn, $query);
+    }
+
+
+
+
+
+    if ($data && $foo) {
+
+
+        echo "Data has been inserted to database.";
+        
+   
+
+
+        $receiver = $email;
+        $subject = "Registration Successful @G22 portal";
+        $body =
+            "Hi ${fname} ${lname}.
+
+        Greetings of the day. 
+        Thanks a lot for registering on our booking platform. 
+
+        Following is your username and registration email.
+        
+        # Username - ${username}
+        # Email - ${email}
+
+        We advise you not to share your password or login details with anyone.
+        
+Thanks
+G22 Team "
+            ;
+        $sender = "From: b21327@students.iitmandi.ac.in";
+
+        echo '<div class="my_class">';
+        if (mail($receiver, $subject, $body, $sender)) {
+            echo "Email sent successfully to $receiver";
+        } else {
+            echo "Sorry, failed while sending mail!" . error_get_last();
+        }
+        echo '</div>';
+
+        
+        $sql_query = "SELECT firstname FROM users where username = '$username'";
+        $result = $mysqli -> query($sql_query);
+
+        $url = 'date.php';
+        while($row=mysqli_fetch_array($result))
+{
+        $url .= '?firstname='.$row['firstname'].'';
+}
+
+        $sql_query = "SELECT designation FROM users where username = '$username'";
+        $result = $mysqli -> query($sql_query);
+
+        while($row=mysqli_fetch_array($result))
+{
+        $url .= '&designation='.$row['designation'].'';
+}
+        $sql_query = "SELECT username FROM users where username = '$username'";
+        $result = $mysqli -> query($sql_query);
+
+        while($row=mysqli_fetch_array($result))
+{
+        $url .= '&username='.$row['username'].'';
+}
+        header('Location: '.$url);
+
+    } else {
+        if ($foo == true) {
+            echo "Insertion operation failed.<br> REASON - " . mysqli_error($conn);
+            echo "<br>";
+        } else {
+            echo "Insertion operation failed.<br> REASON - Password mismatch.";
+            echo "<br>";
+        }
+
+    }
+    echo '</div>';
+
+
 }
 ?>
