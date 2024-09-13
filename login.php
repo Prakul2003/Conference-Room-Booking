@@ -62,6 +62,9 @@
                 $row = mysqli_fetch_array($res_p);
                 $firstname = $row['firstname'];
                 $designation = $row['designation'];
+                echo "<script>
+                alert('Firstname: " . $firstname . "\\nDesignation: " . $designation . "\\nUsername: " . $username . "');
+              </script>";
 
 
                 // Remove exit and allow the redirection after the alert
@@ -71,7 +74,7 @@
                 echo '<script type="text/javascript">';
                 echo $url;
                 echo '</script>';
-                header('Location: '.$url);
+                header("Location: {$url}");
                 exit(); // Ensure no further code is executed after redirection
             } 
             else {
