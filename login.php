@@ -43,7 +43,7 @@
 <?php
     // Ensure you are using the correct database connection variable
     $mysqli = new mysqli($servername, $username, $password, $dbname);
-    
+    echo "aa";
     if (isset($_POST['login'])) {
         // Sanitize and retrieve input
         $username = $_POST['username'];
