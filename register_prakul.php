@@ -78,12 +78,16 @@ if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
 
     $unik = "$p2$p3$p1";
     $query = "INSERT INTO reservations (reservation_id, username, conf_room, time_slot, datee, designation) 
-          VALUES ('$unik', '$user', '$p3', '$p1', '$p2', '$designation')";
+              VALUES ('$unik', '$user', '$p3', '$p1', '$p2', '$designation')";
+    
+    // Debugging - check if the query executes successfully
     if (mysqli_query($conn, $query)) {
-        echo "Record inserted successfully";
+        echo "Record inserted successfully!";
     } else {
-        echo "Error: " . mysqli_error($conn);  // This will output the MySQL error message
+        // Output the MySQL error message
+        echo "Error inserting record: " . mysqli_error($conn);
     }
+
 
     $firstname = getUserData($conn, 'firstname', $user);
     $lastname = getUserData($conn, 'lastname', $user);
