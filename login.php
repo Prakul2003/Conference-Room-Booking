@@ -69,11 +69,13 @@
 
                 // Remove exit and allow the redirection after the alert
                 // Construct URL with parameters
-                $url = "http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=" . urlencode($firstname) . "&designation=" . urlencode($designation) . "&username=" . urlencode($username);
-
+                echo "<script>
+                window.location.href = 'http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=" . urlencode($firstname) . "&designation=" . urlencode($designation) . "&username=" . urlencode($username) . "';
+                 </script>";
+                
                 // PHP Header redirection
-                header("Location: $url");
-                // exit(); // Ensure no further code is executed after redirection
+                // header("Location: $url");
+                exit(); // Ensure no further code is executed after redirection
             } 
             else {
                 echo "<script>alert('Invalid password.');</script>";
