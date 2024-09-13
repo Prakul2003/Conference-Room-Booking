@@ -68,6 +68,9 @@
                 // Construct URL with parameters
                 $url = 'http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname='.''.$firstname.''.'&designation='.''.$designation.''.'&username='.''.$username.'';
                 // Redirect to date.php
+                echo '<script type="text/javascript">';
+                echo $url;
+                echo '</script>';
                 header('Location: '.$url);
                 exit(); // Ensure no further code is executed after redirection
             } 
