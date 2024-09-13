@@ -82,10 +82,14 @@ if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
     
     // Debugging - check if the query executes successfully
     if (mysqli_query($conn, $query)) {
-        echo "Record inserted successfully!";
+        echo "<script>
+                alert('Record added succesfully');
+              </script>";
     } else {
         // Output the MySQL error message
-        echo "Error inserting record: " . mysqli_error($conn);
+        echo "<script>
+                alert('Record not added succesfully');
+              </script>";
     }
 
 
