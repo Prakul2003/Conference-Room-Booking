@@ -104,6 +104,11 @@ if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
     // Send the booking email using PHPMailer
     sendBookingEmail($firstname, $lastname, $email, $p2, $p3, $timeSlotDisplay);
 }
+else{
+    echo "<script>
+                alert('Error receiving values');
+              </script>";
+}
 
 function getUserData($conn, $field, $username) {
     $sql_query = "SELECT $field FROM users WHERE username = '$username'";

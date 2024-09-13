@@ -26,7 +26,7 @@ function ins(event){
     const username = document.getElementById('username').textContent
     const designation = document.getElementById('designation').textContent
     
-    location.href = "http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/register_prakul.php?p1=" + a + "&p2=" + date + "&p3=" + conf_room + "&username=" + username + "&designation=" + designation;
+    window.location.href = "http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/register_prakul.php?p1=" + a + "&p2=" + date + "&p3=" + conf_room + "&username=" + username + "&designation=" + designation;
 
     // Delay the redirection to the thank-you page by 1-2 seconds to ensure the first redirect finishes
     // setTimeout(() => {
