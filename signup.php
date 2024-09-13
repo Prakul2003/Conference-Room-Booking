@@ -108,15 +108,23 @@
 </html>
 
 <?php
-$mysqli = new mysqli($servername, $username, $psd, $dbname);
-if (isset($_POST['register'])) {
-    $username = $_POST['username'];
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $email = $_POST['email'];
-    $psd = $_POST['psw'];
-    $cpsd = $_POST['psw-conf'];
-    $designation = $_POST['designation'];
+
+use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+    
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/SMTP.php';
+
+    $mysqli = new mysqli($servername, $username, $psd, $dbname);
+    if (isset($_POST['register'])) {
+        $username = $_POST['username'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $email = $_POST['email'];
+        $psd = $_POST['psw'];
+        $cpsd = $_POST['psw-conf'];
+        $designation = $_POST['designation'];
 
     //         echo '<script>
 //         function myFunction() {
@@ -160,7 +168,8 @@ if (isset($_POST['register'])) {
     </script>';
         $foo = false;
         $data = true;
-    } else {
+    } 
+    else {
         $query = "INSERT INTO users (username,firstname,lastname,email,passwrd,cpassword,designation) 
         VALUES('$username','$fname','$lname','$email','$psd','$cpsd','$designation')";
         $data = mysqli_query($conn, $query);
@@ -175,33 +184,38 @@ if (isset($_POST['register'])) {
 
         echo "Data has been inserted to database.";
         
-   
-
+        $mail = new PHPMailer(true);
+        // SMTP configuration
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; // SMTP server (Gmail)
+        $mail->SMTPAuth = true;         // Enable SMTP authentication
+        $mail->Username = 'b21312@students.iitmandi.ac.in'; // Your Gmail username
+        $mail->Password = 'mqsv awai nalc gabq'; // App password generated from Google account
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
+        $mail->Port = 587; // TCP port to connect to
 
         $receiver = $email;
-        $subject = "Registration Successful @G22 portal";
-        $body =
-            "Hi ${fname} ${lname}.
-
-        Greetings of the day. 
-        Thanks a lot for registering on our booking platform. 
-
-        Following is your username and registration email.
         
-        # Username - ${username}
-        # Email - ${email}
-
-        We advise you not to share your password or login details with anyone.
+        $mail->setFrom('b21312@students.iitmandi.ac.in', 'Prakul');
+        $mail->addAddress( $receiver,$fname);
+        $mail->isHTML(true);
+        $mail->Subject = "Registration Successful @IITMandi Conference Room portal";
+        $mail->Body = 
+        "Hi " . $fname . " " . $lname . ".\n\n" .
+        "Greetings of the day.\n" .
+        "Thanks a lot for registering on our booking platform.\n\n" .
+        "Following is your username and registration email.\n\n" .
+        "# Username - " . $username . "\n" .
+        "# Email - " . $email . "\n\n" .
+        "We advise you not to share your password or login details with anyone.\n\n" .
+        "Thanks and Regards,\n" .
+        "Prakul";
         
-Thanks
-G22 Team "
-            ;
-        $sender = "From: b21327@students.iitmandi.ac.in";
-
         echo '<div class="my_class">';
-        if (mail($receiver, $subject, $body, $sender)) {
+        if ($mail->send()) {
             echo "Email sent successfully to $receiver";
-        } else {
+        } 
+        else {
             echo "Sorry, failed while sending mail!" . error_get_last();
         }
         echo '</div>';
@@ -232,7 +246,9 @@ G22 Team "
 }
         header('Location: '.$url);
 
-    } else {
+    } 
+
+    else {
         if ($foo == true) {
             echo "Insertion operation failed.<br> REASON - " . mysqli_error($conn);
             echo "<br>";

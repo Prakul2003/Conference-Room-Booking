@@ -1,4 +1,4 @@
-<?php
+ <?php
 $receiver = "b21327@students.iitmandi.ac.in";
 $subject = "Email Test via PHP using Localhost";
 $body = "Hi, there...This is a test email send from Localhost.";
