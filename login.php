@@ -62,20 +62,18 @@
                 $row = mysqli_fetch_array($res_p);
                 $firstname = $row['firstname'];
                 $designation = $row['designation'];
-                echo "<script>
-                alert('Firstname: " . $firstname . "\\nDesignation: " . $designation . "\\nUsername: " . $username . "');
-              </script>";
+            //     echo "<script>
+            //     alert('Firstname: " . $firstname . "\\nDesignation: " . $designation . "\\nUsername: " . $username . "');
+            //   </script>";
 
 
                 // Remove exit and allow the redirection after the alert
                 // Construct URL with parameters
-                $url = "http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname={$firstname}&designation={$designation}&username={$username}";
-                // Redirect to date.php
-                echo '<script type="text/javascript">';
-                echo $url;
-                echo '</script>';
-                header("Location: {$url}");
-                exit(); // Ensure no further code is executed after redirection
+                $url = "http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=" . urlencode($firstname) . "&designation=" . urlencode($designation) . "&username=" . urlencode($username);
+
+                // PHP Header redirection
+                header("Location: $url");
+                // exit(); // Ensure no further code is executed after redirection
             } 
             else {
                 echo "<script>alert('Invalid password.');</script>";
