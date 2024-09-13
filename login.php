@@ -65,29 +65,51 @@
         $sql_u = "SELECT * FROM users WHERE username = '$username'";
         $res_u = mysqli_query($conn, $sql_u);
 
-        if (mysqli_num_rows($res_u) == 1) {
-            // Verify username and password
-            $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
-            $res_p = mysqli_query($conn, $sql_p);
+        // if (mysqli_num_rows($res_u) == 1) {
+        //     // Verify username and password
+        //     $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
+        //     $res_p = mysqli_query($conn, $sql_p);
 
-            if (mysqli_num_rows($res_p) == 1) {
-                // Fetch data for redirection URL
-                $row = mysqli_fetch_assoc($res_p);
-                $firstname = $row['firstname'];
-                $designation = $row['designation'];
+        //     if (mysqli_num_rows($res_p) == 1) {
+        //         // Fetch data for redirection URL
+        //         $row = mysqli_fetch_assoc($res_p);
+        //         $firstname = $row['firstname'];
+        //         $designation = $row['designation'];
 
-                // Construct URL with parameters
-                $url = 'https://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=' . urlencode($firstname) . '&designation=' . urlencode($designation) . '&username=' . urlencode($username);
+        //         // Construct URL with parameters
+        //         $url = 'https://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=' . urlencode($firstname) . '&designation=' . urlencode($designation) . '&username=' . urlencode($username);
 
-                // Redirect to date.php
-                header('Location: ' . $url);
-                exit(); // Ensure no further code is executed after redirection
-            } else {
-                echo "<script>alert('Invalid password.');</script>";
-            }
+        //         // Redirect to date.php
+        //         header('Location: ' . $url);
+        //         exit(); // Ensure no further code is executed after redirection
+        //     } else {
+        //         echo "<script>alert('Invalid password.');</script>";
+        //     }
+        // } 
+        if (mysqli_num_rows($res_p) == 1) {
+            // Fetch data for redirection URL
+            $row = mysqli_fetch_assoc($res_p);
+            $firstname = $row['firstname'];
+            $designation = $row['designation'];
+        
+            // Debug: Check if firstname and designation are fetched correctly
+            echo "Firstname: " . $firstname . "<br>";
+            echo "Designation: " . $designation . "<br>";
+            echo "Username: " . $username . "<br>";
+        
+            // Stop execution temporarily to see the output
+            exit();
+        
+            // Construct URL with parameters
+            $url = 'https://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=' . urlencode($firstname) . '&designation=' . urlencode($designation) . '&username=' . urlencode($username);
+        
+            // Redirect to date.php
+            header('Location: ' . $url);
+            exit(); // Ensure no further code is executed after redirection
         } else {
-            echo "<script>alert('Username does not exist. Please sign up.');</script>";
+            echo "<script>alert('Invalid password.');</script>";
         }
+        
     }
 
     // Close connection
