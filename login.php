@@ -48,6 +48,7 @@
         // Sanitize and retrieve input
         $username = $_POST['username'];
         $psd = $_POST['psw'];
+        echo "a";
 
 
         // Check if username exists
@@ -56,6 +57,7 @@
 
         if (mysqli_num_rows($res_u) > 0) {
             // Verify username and password
+            echo "b";
             $sql_p = "SELECT * FROM users WHERE username = '$username' AND passwrd = '$psd'";
             $res_p = mysqli_query($conn, $sql_p);
 
@@ -64,6 +66,7 @@
                 $row = mysqli_fetch_assoc($res_p);
                 $firstname = $row['firstname'];
                 $designation = $row['designation'];
+                echo "c";
 
                 // Debugging: Show firstname, designation, and username in an alert
                 echo "<script>
