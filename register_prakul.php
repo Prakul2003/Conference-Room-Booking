@@ -1,31 +1,5 @@
 <?php include("connection.php");?>
 
-<?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-
-
-$cars = array('time_slot_1', 'time_slot_2', 'time_slot_3', 'time_slot_4', 'time_slot_5');
-$date = $_GET["date"];
-$conf_room = $_GET['conf_room'];
-$user = $_GET['username'];
-$designation = $_GET['designation'];
-
-foreach ($cars as $slot) {
-    $sql_u = "SELECT * FROM reservations WHERE datee = '$date' AND conf_room = '$conf_room' AND time_slot = '$slot'";
-    $res_u = mysqli_query($conn, $sql_u);
-
-    if (mysqli_num_rows($res_u) > 0) {
-        ${$slot} = '1'; // Dynamically setting variable based on slot availability
-    }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,6 +44,30 @@ foreach ($cars as $slot) {
 </body>
 
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+
+$cars = array('time_slot_1', 'time_slot_2', 'time_slot_3', 'time_slot_4', 'time_slot_5');
+$date = $_GET["date"];
+$conf_room = $_GET['conf_room'];
+$user = $_GET['username'];
+$designation = $_GET['designation'];
+
+foreach ($cars as $slot) {
+    $sql_u = "SELECT * FROM reservations WHERE datee = '$date' AND conf_room = '$conf_room' AND time_slot = '$slot'";
+    $res_u = mysqli_query($conn, $sql_u);
+
+    if (mysqli_num_rows($res_u) > 0) {
+        ${$slot} = '1'; // Dynamically setting variable based on slot availability
+    }
+}
+
+
 if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
     echo "<script>
     alert('reached here');
