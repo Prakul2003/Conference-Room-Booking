@@ -75,7 +75,9 @@ if (isset($_GET["p1"]) && isset($_GET["p2"]) && isset($_GET["p3"])) {
     $p3 = preg_replace("/\s+/", "", $_GET["p3"]);
     $user = preg_replace("/\s+/", "", $_GET["username"]);
     $designation = preg_replace("/\s+/", "", $_GET["designation"]);
-
+    echo "<script>
+    alert('$p1 $p2 $p3');
+  </script>";
     $unik = "$p2$p3$p1";
     $query = "INSERT INTO reservations (reservation_id, username, conf_room, time_slot, datee, designation) 
               VALUES ('$unik', '$user', '$p3', '$p1', '$p2', '$designation')";
