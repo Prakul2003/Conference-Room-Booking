@@ -27,7 +27,7 @@ try {
     // Email content
     //$mail->isHTML(true); // Set email format to HTML
     $mail->Subject = 'TMC';
-    $mail->Body    = "HI VIKAS \n\n"."greetings of the day.\n";
+    $mail->Body    = "HI VIKAS \n\n"."greetings of the day.\n;
 
     // Send the email
     $mail->send();
