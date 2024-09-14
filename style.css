@@ -1,91 +1,115 @@
-
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
 }
-h1 {
-    font-size: 80px;
-  }
-  
-  h2 {
-    font-size: 30px;
-    color: rgb(74, 74, 74);
-  }  
-.container{
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(200, 245, 255, 0.40),rgba(200, 245, 255, 0.40)), url(pictures/background1.png);
+    background-image: linear-gradient(rgba(200, 245, 255, 0.40), rgba(200, 245, 255, 0.40)), url(pictures/background1.png);
     background-size: cover;
     background-position: center;
     padding: 10px 8%;
-    
 }
-nav{
+
+nav {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
-.logo{
+.logo {
+    width: 150px;
     cursor: pointer;
 }
 
-nav ul{
+nav ul {
     list-style: none;
-    width: 100%;
-    text-align: right;
-    padding-right: 60px;
+    display: flex;
+    gap: 30px;
 }
 
-nav ul li{
-    display: inline-block;
-    margin: 10px 20px;
+nav ul li {
+    margin: 0;
+    transition: transform 0.3s ease;
 }
 
-nav ul li :hover{
-    width: auto;
-    height: auto;
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: rgba(153, 153, 255, 0.50);
-    padding: 10px;
+nav ul li:hover {
+    transform: scale(1.1);
 }
 
-nav ul li a{
+nav ul li a {
     color: #000;
     text-decoration: none;
     font-size: large;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    border: 2px solid black;
-    outline: 0;
+nav ul li a:hover {
+    background-color: rgba(153, 153, 255, 0.50);
     border-radius: 5px;
-    background: #99f;
-    color: #fff;
-    font-weight: 500;
-    cursor: pointer;
 }
 
-.bookings :hover{
-    background-color: rgb(85, 85, 155);
-}
-
-.btn img{
-    width: 35%;
-    margin-right: 10px;
-}
-
-.footBtn{
-    padding-top: 33%;
+.content {
     text-align: center;
+    padding: 50px 0;
+}
+
+h1 {
+    font-size: 4rem;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #4A4A4A;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
     font-size: large;
     font-weight: 700;
+}
+
+.footer p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .footer {
+        padding: 15px 0;
+    }
 }
