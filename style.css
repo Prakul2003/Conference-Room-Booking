@@ -7,12 +7,12 @@
 
 h1 {
     font-size: 80px;
-    color: black; /* Ensuring visibility */
+    color: #fff; /* Ensuring visibility */
 }
 
 h2 {
     font-size: 30px;
-    color: rgb(74, 74, 74);
+    color:#fff;
 }
 
 /* Container for the layout */
