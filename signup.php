@@ -222,7 +222,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
         
         $sql_query = "SELECT firstname FROM users where username = '$username'";
-        $result = $mysqli -> query($sql_query);
+        $result = mysqli_query($conn, $sql_query);
 
         $url = 'http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php';
         while($row=mysqli_fetch_array($result))
@@ -231,14 +231,14 @@ use PHPMailer\PHPMailer\PHPMailer;
 }
 
         $sql_query = "SELECT designation FROM users where username = '$username'";
-        $result = $mysqli -> query($sql_query);
+        $result =  mysqli_query($conn, $sql_query);
 
         while($row=mysqli_fetch_array($result))
 {
         $url .= '&designation='.$row['designation'].'';
 }
         $sql_query = "SELECT username FROM users where username = '$username'";
-        $result = $mysqli -> query($sql_query);
+        $result =  mysqli_query($conn, $sql_query);
 
         while($row=mysqli_fetch_array($result))
 {
