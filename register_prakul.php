@@ -143,7 +143,7 @@ function sendBookingEmail($firstname, $lastname, $email, $date, $room, $slot) {
         $mail->setFrom('b21312@students.iitmandi.ac.in', 'Prakul');
         $mail->addAddress($email);
 
-        //$mail->isHTML(true);
+        $mail->isHTML(true);
         $mail->Subject = "Booking Successful @IIT Mandi Conference Room Portal";
         $mail->Body = "
             Hi $firstname $lastname,<br><br>
