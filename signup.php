@@ -221,31 +221,13 @@ use PHPMailer\PHPMailer\PHPMailer;
         echo '</div>';
 
         
-        $sql_query = "SELECT firstname FROM users where username = '$username'";
+        $sql_query = "SELECT * FROM users where username = '$username'";
         $result = mysqli_query($conn, $sql_query);
-
-        $url = 'http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php';
-        while($row=mysqli_fetch_array($result))
-{
-        $url .= '?firstname='.$row['firstname'].'';
-}
-
-        $sql_query = "SELECT designation FROM users where username = '$username'";
-        $result =  mysqli_query($conn, $sql_query);
-
-        while($row=mysqli_fetch_array($result))
-{
-        $url .= '&designation='.$row['designation'].'';
-}
-        $sql_query = "SELECT username FROM users where username = '$username'";
-        $result =  mysqli_query($conn, $sql_query);
-
-        while($row=mysqli_fetch_array($result))
-{
-        $url .= '&username='.$row['username'].'';
-}
+        $row = mysqli_fetch_array($result);
+        $firstname = $row['firstname'];
+        $designation = $row['designation'];
         echo "<script>
-        window.location.href = {$url};
+                window.location.href = 'http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php?firstname=" . urlencode($firstname) . "&designation=" . urlencode($designation) . "&username=" . urlencode($username) . "';
         </script>";
 
     } 
