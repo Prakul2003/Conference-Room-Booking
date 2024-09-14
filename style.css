@@ -6,7 +6,8 @@
 }
 
 body {
-    background-color: #f0f8ff;
+    background-color: #1f1f1f;
+    color: #fff;
 }
 
 .container {
@@ -15,11 +16,10 @@ body {
     justify-content: space-between;
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(pictures/background1.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('background.png');
     background-size: cover;
     background-position: center;
     padding: 10px 8%;
-    color: #333;
 }
 
 nav {
@@ -50,56 +50,57 @@ nav ul li:hover {
 }
 
 nav ul li a {
-    color: #333;
+    color: #fff;
     text-decoration: none;
     font-size: large;
     padding: 10px;
-    background-color: #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 nav ul li a:hover {
-    background-color: #c0c0c0;
+    background-color: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
 }
 
 .content {
     text-align: center;
     padding: 50px 0;
-    color: #333;
+    color: #fff;
 }
 
 h1 {
     font-size: 4rem;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
     font-size: 2rem;
     margin-bottom: 20px;
+    color: #d1d1d1;
 }
 
 .cta-btn {
     font-size: 1.2rem;
     padding: 15px 30px;
-    background-color: #e0e0e0;
-    color: #333;
-    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid #fff;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cta-btn:hover {
-    background-color: #c0c0c0;
+    background-color: rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
 }
 
 .footer {
     text-align: center;
     padding: 20px 0;
-    color: #333;
-    background-color: #f0f8ff;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #d1d1d1;
 }
