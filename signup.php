@@ -244,7 +244,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 {
         $url .= '&username='.$row['username'].'';
 }
-        header('Location: '.$url);
+        echo "<script>
+        window.location.href = {$url};
+        </script>";
 
     } 
 
