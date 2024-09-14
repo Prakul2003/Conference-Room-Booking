@@ -7,12 +7,12 @@
 
 h1 {
     font-size: 80px;
-    color: #0080e2; /* Ensuring visibility */
+    color: #000; /* Ensuring visibility */
 }
 
 h2 {
     font-size: 30px;
-    color: #0080e2;
+    color: #36a80587;
 }
 
 /* Container for the layout */
