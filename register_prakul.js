@@ -34,4 +34,5 @@ function ins(event){
     //     location.href = "thankyou.html";
     // }, 2000);
     }
+    
 }
