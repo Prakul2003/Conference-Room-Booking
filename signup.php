@@ -224,7 +224,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         $sql_query = "SELECT firstname FROM users where username = '$username'";
         $result = $mysqli -> query($sql_query);
 
-        $url = 'date.php';
+        $url = 'http://conferenceroom-b3ddc4hvbnaze7gf.centralindia-01.azurewebsites.net/date.php';
         while($row=mysqli_fetch_array($result))
 {
         $url .= '?firstname='.$row['firstname'].'';
