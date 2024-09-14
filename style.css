@@ -7,19 +7,19 @@
 
 h1 {
     font-size: 80px;
-    color: black; /* Ensuring visibility */
+    color: #ffffff; /* White text for visibility against dark background */
 }
 
 h2 {
     font-size: 30px;
-    color: rgb(74, 74, 74);
+    color: #dcdcdc; /* Light grey for subtitle text */
 }
 
 /* Container for the layout */
 .container {
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(200, 245, 255, 0.40), rgba(200, 245, 255, 0.40)), url(pictures/background1.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(pictures/background1.png); /* Dark overlay for better text readability */
     background-size: cover;
     background-position: center;
     padding: 10px 8%;
@@ -54,14 +54,14 @@ nav ul li {
 }
 
 nav ul li:hover {
-    border: 2px solid black;
+    border: 2px solid #ffffff; /* White border on hover for better contrast */
     border-radius: 5px;
-    background-color: rgba(153, 153, 255, 0.50);
+    background-color: rgba(255, 255, 255, 0.20); /* Light hover effect */
     padding: 10px;
 }
 
 nav ul li a {
-    color: #000;
+    color: #ffffff; /* White text for menu links */
     text-decoration: none;
     font-size: large;
     transition: background-color 0.3s ease, border 0.3s ease;
@@ -71,7 +71,7 @@ nav ul li a {
 .content {
     text-align: center;
     padding: 50px 0;
-    color: #000;
+    color: #ffffff;
 }
 
 h1 {
@@ -87,11 +87,11 @@ h2 {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    border: 2px solid black;
+    border: 2px solid #ffffff;
     outline: 0;
     border-radius: 5px;
-    background: #99f;
-    color: #fff;
+    background: rgba(255, 255, 255, 0.1); /* Transparent background with white text */
+    color: #ffffff;
     font-weight: 500;
     cursor: pointer;
 }
@@ -107,5 +107,7 @@ h2 {
     text-align: center;
     font-size: large;
     font-weight: 700;
-    color: #000;
+    color: #000; 
 }
+
+
